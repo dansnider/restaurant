@@ -1,0 +1,13 @@
+<h2><a href="/parties/new">Add a Party</a></h2>
+
+<% @parties.each do |party| %>
+
+<a href="/parties/<%=party.id%>"><h2>Party <%= party.id %> </h2></a>
+	<ul>
+		<li>Num of Guests: <%= party.num_of_guests %> </li>
+  	<li>Table Number: <%= party.table_id %> </li>
+  	<br>
+  	<li id="add-order"><a href="/orders/<%= party.id%>/new">Add Orders for this Party</a></li>
+  </ul>
+
+ <% end %>

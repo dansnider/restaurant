@@ -1,0 +1,43 @@
+<h2><a href="/foods/new">Add a Menu Item</a></h2>
+
+<h2>Appetizers</h2>
+<ul>
+<% @foods.where("category='Appetizer'").each do |food| %>
+    <li>
+        <a href="/foods/<%= food.id %>"><%= food.name %></a>
+    </li>
+    <br>
+    <% end %>
+</ul>
+
+<h2>Entrees</h2>
+<ul>
+<% @foods.where("category='Entree'").each do |food| %>
+    <li>
+        <a href="/foods/<%= food.id %>"><%= food.name %></a>
+    </li>
+    <br>
+    <% end %>
+</ul>
+
+<h2>Desserts</h2>
+<ul>
+<% @foods.where("category='Dessert'").each do |food| %>
+    <li>
+        <a href="/foods/<%= food.id %>"><%= food.name %></a>
+    </li>
+    <br>
+    <% end %>
+</ul>
+
+<h2>Beverages</h2>
+<ul>
+<% @foods.where("category='Beverage'").each do |food| %>
+    <li>
+        <a href="/foods/<%= food.id %>"><%= food.name %></a>
+    </li>
+    <br>
+    <% end %>
+</ul>
+
+<br>

@@ -1,0 +1,19 @@
+<h2> Add a Party</h2>
+<form action="/parties" method="POST">
+
+ <fieldset>
+   <legend>Party Information</legend>
+   <input type="text" name="party[num_of_guests]" value="<%= @party.num_of_guests %>"> 
+   <br>
+   <input type="text" name="party[table_id]" value="<%= @party.table_id%>"> 
+   <br>
+   <label for="has_paid">Has Paid?</label>
+   <input name="party[has_paid]" type="hidden" value="false" />
+   <input type="checkbox" name="party[has_paid]" id="has_paid">
+ </fieldset>
+ <input type="submit">
+</form>
+<form id="delete" action="/parties/<%= @party.id %>" method='POST'>
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value='Delete Party'>
+</form>

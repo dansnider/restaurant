@@ -1,0 +1,43 @@
+<h2> Add a New Food</h2>
+<form action="/foods" method="POST">
+
+ <fieldset>
+   <legend>Food Information</legend>
+   <input type="text" name="food[name]" placeholder="Name"> 
+   <select name="food[category]"> 
+       <option>Appetizer</option>
+       <option>Entree</option>
+       <option>Dessert</option>
+       <option>Beverage</option>
+   </select>
+   <br>
+   <input type="number" name="food[price]" placeholder="0.0"> 
+   <br>
+   <textarea name="food[description]" placeholder="Food description here..."></textarea>
+ </fieldset>
+ <br>
+ <fieldset>
+   <legend>Dietary Concerns</legend>
+
+   <label for="veggie">Vegetarian</label>
+   <input name="food[vegetarian]" type="hidden" value="false" />
+   <input id="veggie" name="food[vegetarian]" type="checkbox" value="true" />
+   <br>
+
+   <label for="gluten">Contains Gluten</label>
+   <input name="food[has_gluten]" type="hidden" value="false" />
+   <input type="checkbox" name="food[has_gluten]" id="gluten">
+   <br>
+
+   <label for="dairy">Contains Dairy</label>
+   <input name="food[has_dairy]" type="hidden" value="false" />
+   <input type="checkbox" name="food[has_dairy]" id="dairy">
+   <br>
+
+   <label for="nut">Contains Nuts</label>
+   <input name="food[has_nuts]" type="hidden" value="false" />
+   <input type="checkbox" name="food[has_nuts]" id="nut">
+
+ </fieldset>
+ <input type="submit">
+</form>

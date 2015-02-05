@@ -1,0 +1,97 @@
+body {
+	margin: 0;
+	border: 0;
+	padding: 0;
+	font: inherit;
+	font-family: 'Titillium Web', sans-serif;
+}
+
+h2 {
+	font-size: 24px;
+}
+
+p {
+	font-size: 16px;
+	margin-left: 40px;
+}
+
+main {
+	width: 80%;
+	margin: 0 auto;
+}
+
+ul {
+	font-size: 16px;
+	text-decoration: none;
+	list-style-type: none;
+}
+
+nav > ul > li {
+	display: inline;
+	font-size: 26px;
+	margin-left: 40px;
+}
+
+a {
+	text-decoration: none;
+	font-weight: bold;
+	color: black;
+}
+
+nav {
+	background-color: #072C35;
+}
+
+nav > ul > li > a {
+	background-color: #7F6AAE;
+	padding: 10px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+fieldset {
+	width: 80%;
+	margin: 0 auto;
+}
+
+legend {
+	font-size: 24px;
+}
+
+input[type=submit] {
+	padding: 5px 15px; 
+	background: #ccc; 
+	border: 0 none;
+	cursor: pointer;
+	border-radius: 5px;
+	margin-left: 10%;
+	margin-top: 10px;
+	width: 20%;
+	height: 5%;
+	font-size: 16px;
+}
+
+textarea {
+	height: 200px;
+	width: 100%;
+	margin-top: 4px;
+}
+
+#add-order {
+	font-size: 24px;
+	background-color: #5B919E;
+	display:inline;
+	padding: 5px;
+	border-radius: 5px;
+	margin-top:20px;
+}
+
+#add-order a {
+	margin-top: 5px;
+}
+
+#delete {
+	display: inline;
+}
+
+
