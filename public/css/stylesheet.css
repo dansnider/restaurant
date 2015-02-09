@@ -2,6 +2,11 @@
 	nav {display: none;}
 }
 
+@media (min-width: 900px) {
+  #total-table {
+    float: none;
+    } }
+
 * {
   margin: 0;
   border: 0;
