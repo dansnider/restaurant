@@ -1,5 +1,9 @@
+<div id="editparty">
 <h2> Party #<%= @party.id %></h2>
 <p>Number of Guests: <%= @party.num_of_guests %></p>
 <p>Table Number: <%= @party.table_id %></p>
+<p>Paid? <%= @party.has_paid%></p>
 <br>
+<h1 class="button"><a href="/orders/<%= @party.id%>/new">Add Orders</a></h1>
 <a href="/parties/<%=@party.id%>/edit">Edit / Delete Party</a>
+</div>

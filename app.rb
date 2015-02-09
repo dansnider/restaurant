@@ -2,10 +2,23 @@ Dir["models/*.rb"].each do |file|
   require_relative file
 end
 
+enable :sessions
+set :app_password, "northeast"
+
+
 ActiveRecord::Base.establish_connection(
   adapter: "postgresql",
   database: "restaurant_db"
 ) 
+
+configure do
+  set :scss, {:style => :compressed, :debug_info => false}
+end
+
+get '/css/:name.css' do |name|
+  content_type :css
+  scss "../public/sass/#{name}".to_sym, :layout => false
+end
 
 ### CONSOLE ###
 
@@ -17,7 +30,7 @@ end
 ### INDEX ###
 
 get "/" do
-	erb :index
+  erb :index
 end
 
 ### FOODS ###
@@ -28,17 +41,31 @@ get "/foods" do
 end
 
 get "/foods/new" do
-	erb :"foods/new"
+  @password = session[:password]
+  if @password == settings.app_password
+	  erb :"foods/new"
+  else
+    "Please set your password by visiting /set/password/:password"
+  end
 end
 
-get "/foods/:id" do
-  @food = Food.find( params[:id] )
+get "/foods/:id" do |id|
+  @food = Food.find(id)
   erb :"foods/show"
 end
 
 post "/foods" do
   food = Food.create( params[:food] )
-  redirect to "foods/#{food.id}"
+  
+  if food.valid?
+    redirect to "foods/#{food.id}"
+  else
+    @food = food
+    @error_messages = food.errors.messages
+
+    erb :'foods/new'
+  end
+  
 end
 
 get '/foods/:id/edit' do
@@ -69,7 +96,12 @@ get "/parties" do
 end
 
 get "/parties/new" do
-  erb :'parties/new'
+  @password = session[:password]
+  if @password == settings.app_password
+    erb :'parties/new'
+  else
+    "Please set your password by visiting /set/password/:password"
+  end
 end
 
 post "/parties" do
@@ -108,19 +140,47 @@ get "/orders" do
   erb :"orders/index"
 end
 
-get "/orders/new" do
-  erb :'orders/new'
+get "/orders/:id/new" do |id|
+  @party = Party.find(id)
+  @orders = @party.foods
+  @foods = Food.all
+  @password = session[:password]
+
+  if @password == settings.app_password && @party.has_paid == false
+    erb :'orders/new'
+  else
+    erb :error
+  end
 end
 
-post "/orders" do
+post "/orders/:id/new" do
   order = Order.create(params[:order])
-  redirect to "/orders/#{order.id}"
+  party = Party.find(params[:id])
+  redirect to "/orders/#{party.id}/new"
 end
 
-get "/orders/:id" do
-  @order = Order.find( params[:id] )
+get "/orders/:id" do |id|
+  @party = Party.find(id)
+  @foods = @party.foods
+  # @orders = Order.where("party_id = #{params[:id]}")
   erb :"orders/show"
 end
+
+delete '/orders/:id/new' do |id|
+  food_id = params[:food]["id"]
+  order = Order.find_by(food_id: food_id, party_id: id)
+  order.destroy
+  party = Party.find(id)
+  redirect to "/orders/#{party.id}/new"
+end
+
+### SESSIONS ###
+
+get '/set/password/:password' do |password|
+  session[:password] = password
+  redirect to('/')
+end
+
 
 
 

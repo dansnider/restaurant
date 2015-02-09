@@ -1,6 +1,7 @@
-<h2> Add a New Order </h2>
+scratch
 
 
+###new order###
 <ul>
 	<h2> Appetizers </h2>
 <% @foods.where("category='Appetizer'").each do |food| %>
@@ -44,39 +45,3 @@
    </form>
    <% end %>
 </ul>
-
-<div id="total-table">
- <table>
-    <% @party.foods.uniq.each do |item| %>
-    	<% food_count = @party.foods.where(name: item.name).count %>
-    
-          <tr>
-	        <td>
-	          <%= item.name %> :
-	        </td>
-
-	        <td>
-	          <%= "%.2f" % item.price %>
-	        </td>
-	        <td>
-	            x <%= food_count %>
-	        </td>
-	        <td>
-	        		<form action="/orders/<%= @party.id %>/new" method='POST'>
-	        		<input id="delete" type="hidden" name="food[id]" value="<%= item.id%>">
-	            <input id="delete" type="hidden" name="_method" value="DELETE">
-	            <input id="delete" type="submit" value="Delete Item">
-							</form>
-	        </td>
-	        </tr>
-    <% end %>
-</table>
-<span id="view-receipt"><a href="/orders/<%= @party.id %>">View Receipt</a></span>
-</div>
-
-
-
-  
-  
-</form>
-

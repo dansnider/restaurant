@@ -1,0 +1,25 @@
+<h2 id="receipt-header"> Receipt for Party: <%= @party.id %> </h2>
+<a href="/orders/<%= @party.id %>/new"><h3 id="edit">Edit</h3></a>
+
+
+<table id="receipt">
+<% @foods.uniq.each do |food| %>
+	<tr>
+		<td><%= food.name %> </td>
+		<td>x <%= @party.foods.where(name: food.name).count %></td>
+		<td>$<%= "%.2f" % food.price %></td>
+	</tr>
+	<% end %>
+</table>
+<div id="subtotal">
+		<h3>Subtotal $<%= "%.2f" % @foods.sum(:price)%></h3>
+		<h3>Tax $<%= "%.2f" % (@foods.sum(:price) * 0.08875) %></h3>
+		<hr>
+		<h3>Total $<%= "%.2f" % (@foods.sum(:price) + (@foods.sum(:price) * 0.08875))%></h3>
+</div>
+<div id="suggested-tip">
+	<p>Suggested Tip:</p>
+		<p> 15% = <%= "%.2f" % (@foods.sum(:price) * 0.15) %></p>
+		<p> 20% = <%= "%.2f" % (@foods.sum(:price) * 0.20) %></p>
+		<p> 25% = <%= "%.2f" % (@foods.sum(:price) * 0.25) %></p>
+	</div>
