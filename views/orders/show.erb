@@ -8,19 +8,18 @@
 	<tr>
 		<td><%= food.name %> </td>
 		<td>x <%= @party.foods.where(name: food.name).count %></td>
-		<td>$<%= "%.2f" % food.price %></td>
+		<td>£<%= "%.2f" % food.price %></td>
 	</tr>
 	<% end %>
 </table>
 <div id="subtotal">
-		<h3>Subtotal $<%= "%.2f" % @foods.sum(:price)%></h3>
-		<h3>Tax $<%= "%.2f" % (@foods.sum(:price) * 0.08875) %></h3>
+		<h3>Subtotal £<%= "%.2f" % @foods.sum(:price)%></h3>
+		<h3>VAT £<%= "%.2f" % (@foods.sum(:price) * 0.17.5) %></h3>
 		<hr>
-		<h3>Total $<%= "%.2f" % (@foods.sum(:price) + (@foods.sum(:price) * 0.08875))%></h3>
+		<h3>Total £<%= "%.2f" % (@foods.sum(:price) + (@foods.sum(:price) * 0.08875))%></h3>
 </div>
 <div id="suggested-tip">
 	<p>Suggested Tip:</p>
-		<p> 15% = <%= "%.2f" % (@foods.sum(:price) * 0.15) %></p>
-		<p> 20% = <%= "%.2f" % (@foods.sum(:price) * 0.20) %></p>
-		<p> 25% = <%= "%.2f" % (@foods.sum(:price) * 0.25) %></p>
+		<p> 15% = £<%= "%.2f" % (@foods.sum(:price) * 0.10) %></p>
+		<p> 15% = £<%= "%.2f" % (@foods.sum(:price) * 0.15) %></p>
 	</div>

@@ -1,5 +1,5 @@
 <h2><%= @food.name %></h2>
 <p>Description: <%= @food.description %></p>
-<p>Price <%= "%.2f" % @food.price %></p>
+<p>Price £<%= "%.2f" % @food.price %></p>
 <br>
 <a href="/foods/<%=@food.id%>/edit">Edit Food</a>
